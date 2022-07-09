@@ -19,7 +19,19 @@ public class Exercise3 {
 
 
     public <T extends Comparable<T>> boolean bstEstrictamenteBinario(BST<T> a){
-
-        return false;
+    	if (a.isEmpty()) { //Caso de que esten vacios
+    	    return true;
+    	}else {
+    	    Node<T> raiz = a.root; 
+            return compareNode(raiz);
+    	}
+    }
+    private <T extends Comparable<T>> boolean compareNode(Node<T> node){//Metodo Recursivo
+    	if(node.left != null && node.right != null)
+    	    return compareNode(node.left) && compareNode(node.right); 
+    	else if(node.left == null && node.right == null)//el nodo es una hoja
+    	    return true;
+    	else//No sera binario si solo tiene un hijo
+    	    return false;
     }
 }

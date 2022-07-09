@@ -19,9 +19,22 @@ public class Exercise1 {
         
     }
 
-
     public <T extends Comparable<T>> boolean bstSimilares(BST<T> a1, BST<T> a2){
+    	if (a1.isEmpty() && a2.isEmpty()) { //Caso de que esten vacios
+    	    return true;
+    	}else {
+    	    Node<T> raiz1 = a1.root; 
+            Node<T> raiz2 = a2.root; 
+            return compareNodes(raiz1, raiz2);
+    	}
+    }
 
-        return false;
+    private <T extends Comparable<T>> boolean compareNodes(Node<T> node1, Node<T> node2){//Metodo Recursivo
+    	if(node1 != null && node2 != null) { 
+    	    return compareNodes(node1.left, node2.left) && compareNodes(node1.right, node2.right); 
+    	}else if(node1 == null && node2 == null){
+    	    return true;
+    	}else//Seran diferentes si algun nodo es nulo y el otro no
+    	    return false;
     }
 }
